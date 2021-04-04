@@ -16,6 +16,7 @@ In Sandwich Stack users will be able to:
 # Architecture and Technology 
 * Canvas API
 * PixilArt (graphic design)
+* JavaScript for game logic
 
 # Implementation Timeline
 * Day 1 - Research APIs, create project skeleton, make pixel art
