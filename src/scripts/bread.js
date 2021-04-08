@@ -23,7 +23,7 @@ class Bread {
         let stackx = this.x;
         let stacky = this.canvas.height - 100;
         this.ctx.drawImage(BREAD, 0, 0, 1000, 1000, this.x, this.canvas.height - 100, 300, 300);
-
+        // if (contacted.length >= 5) this.gameOver =true;
         if (contacted.length) {
             for (let i = 0; i < contacted.length; i++) {
                 let currIngredient = contacted[i];
@@ -43,7 +43,7 @@ class Bread {
                     stacky = stacky - 20;
 
                 } 
-                if (this.y <= 80) this.gameOver = true;
+                // if (this.y <= 80) this.gameOver = true;
             }
 
         }

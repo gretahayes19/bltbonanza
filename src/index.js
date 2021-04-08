@@ -9,6 +9,7 @@ let foodArr = [];
 let score = 0;
 let blts = 0;
 let ick = 0;
+let duplicates = false;
 let gameFrame = 0;
 let gameOver = false;
 
@@ -88,6 +89,10 @@ function countGross(contacted) {
   ick = count;
 }
 
+const isGross = (ingredient) => {
+  return ingredient.ingredient?.currentSrc.includes("sock") || ingredient.ingredient?.currentSrc.includes("fish");
+}
+
 function isBLT(contacted) {
     let mayo = 0;
     let tomato = 0;
@@ -109,9 +114,33 @@ function isBLT(contacted) {
     return ((mayo > 0) && (tomato > 0) && (lettuce > 0) && (bacon > 0))
 }
 
-const isGross = (ingredient) => {
-  return ingredient.ingredient?.currentSrc.includes("sock") || ingredient.ingredient?.currentSrc.includes("fish");
+
+
+
+function areDuplicates(contacted) {
+    let mayo = 0;
+    let tomato = 0;
+    let lettuce = 0;
+    let bacon = 0;
+    for (let i = 0; i < contacted.length; i++) {
+      let curr = contacted[i];
+      if (!curr.ingredient) {
+        mayo++
+      } else if (curr.ingredient.currentSrc.includes("tomato")) {
+        tomato++
+      } else if (curr.ingredient.currentSrc.includes("lettuce")) {
+        lettuce++
+      } else if (curr.ingredient.currentSrc.includes("bacon")) {
+        bacon++
+      }
+    }
+
+    if ((mayo > 1) || (tomato > 1) || (lettuce > 1) || (bacon > 1)) {
+      duplicates = true;
+    }
 }
+
+
 
 
 function handleFood(canvas) {
@@ -160,11 +189,6 @@ let thisbread = new Bread(canvas, ctx);
 
 //animation 
 function animate() {
-  if (ick >= 2) {
-    thisbread.gameOver = true;
-    // requestAnimationFrame(animate);
-
-  }
   if (!thisbread.gameOver) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -179,6 +203,7 @@ function animate() {
     //draw sandwich
     thisbread.draw(contacted);
     thisbread.update();
+    areDuplicates(contacted);
     countGross(contacted);
     handleFood(canvas);
 
@@ -191,9 +216,11 @@ function animate() {
 
     //sandwich complete
     if (thisbread.completed) {
-      ctx.fillStyle = "chartreuse";
-      ctx.font = "50px Bungee Shade"
       if (isBLT(contacted)) {
+        ctx.fillStyle = 'white';
+        ctx.fillRect(50, 190, 500, 100);
+        ctx.fillStyle = "chartreuse";
+        ctx.font = "50px Bungee Shade"
         ctx.fillText("That's a BLT!", 100, 250)
         breaded();
         blts += 1;
@@ -201,6 +228,10 @@ function animate() {
           requestAnimationFrame(animate)
         }, 2000)
       } else {
+        ctx.fillStyle = 'white';
+        ctx.fillRect(50, 190, 700, 100);
+        ctx.fillStyle = "chartreuse";
+        ctx.font = "50px Bungee Shade"
         ctx.fillText("That's NOT a BLT!", 100, 250)
         breaded();
         setTimeout(() => {
@@ -218,6 +249,14 @@ function animate() {
     requestAnimationFrame(animate);
 
   }
+  if (ick >= 2 || duplicates) {
+    thisbread.gameOver = true;
+    requestAnimationFrame(animate);
+  }
+  // if (duplicates) {
+  //   thisbread.gameOver = true;
+  //   // requestAnimationFrame(animate);
+  // }
 
 }
 animate();
