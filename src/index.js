@@ -191,12 +191,20 @@ let thisbread = new Bread(canvas, ctx);
 function animate() {
   if (ick >= 2) {
     ctx.fillStyle = "red";
-    ctx.fillText("YUCK! SPACE TO RESTART", 100, 250)
+    ctx.font = "80px Londrina Solid"
+    ctx.fillText("YUCK!", 200, 250)
+    ctx.font = "40px Londrina Solid"
+    ctx.fillText("Hit space to restart", 200, 300)
     thisbread.gameOver = true;
     requestAnimationFrame(animate);
   } else if (duplicates) {
     ctx.fillStyle = "red";
-    ctx.fillText("NO DUPLICATES! SPACE TO RESTART", 100, 250)
+    ctx.font = "80px Londrina Solid"
+    ctx.fillText("NO DUPLICATES!", 200, 250)
+    ctx.font = "40px Londrina Solid"
+    ctx.fillText("Hit space to restart", 200, 300)
+    
+
     thisbread.gameOver = true;
     requestAnimationFrame(animate);
   } 
@@ -220,7 +228,7 @@ function animate() {
     handleFood(canvas);
 
     //write text
-    ctx.font = "30px Bungee Shade";
+    ctx.font = "30px Londrina Solid";
     ctx.fillStyle = "white";
     ctx.fillText("BLT Count: " + blts, 10, 30)
     ctx.fillStyle = "white";
@@ -232,7 +240,7 @@ function animate() {
         ctx.fillStyle = 'white';
         ctx.fillRect(50, 190, 500, 100);
         ctx.fillStyle = "chartreuse";
-        ctx.font = "50px Bungee Shade"
+        ctx.font = "80px Londrina Solid"
         ctx.fillText("That's a BLT!", 100, 250)
         breaded();
         blts += 1;
@@ -243,7 +251,7 @@ function animate() {
         ctx.fillStyle = 'white';
         ctx.fillRect(50, 190, 700, 100);
         ctx.fillStyle = "chartreuse";
-        ctx.font = "50px Bungee Shade"
+        ctx.font = "80px Londrina Solid"
         ctx.fillText("That's NOT a BLT!", 100, 250)
         breaded();
         setTimeout(() => {
