@@ -144,13 +144,13 @@ function areDuplicates(contacted) {
 
 
 function handleFood(canvas) {
-  if (gameFrame % 35 == 0) {
+  if (gameFrame % 15 == 0) {
     let newFood = new Food(canvas, ctx);
     foodArr.push(newFood);
   }
 
   for (let i = 0; i < foodArr.length; i++) {
-    if ((foodArr[i].y === thisbread.y) && (foodArr[i].x > thisbread.x - 50 && foodArr[i].x < thisbread.x + 50)) { 
+    if ((foodArr[i].y === thisbread.y) && (foodArr[i].x > thisbread.x - 70 && foodArr[i].x < thisbread.x + 70)) { 
       if (!foodArr[i].counted) score += 1;
       
       if (contacted.indexOf(foodArr[i]) === -1 ) {
@@ -189,20 +189,28 @@ let thisbread = new Bread(canvas, ctx);
 
 //animation 
 function animate() {
-  if (ick >= 2 || duplicates) {
+  if (ick >= 2) {
+    ctx.fillStyle = "red";
+    ctx.fillText("YUCK! SPACE TO RESTART", 100, 250)
     thisbread.gameOver = true;
     requestAnimationFrame(animate);
-  }
+  } else if (duplicates) {
+    ctx.fillStyle = "red";
+    ctx.fillText("NO DUPLICATES! SPACE TO RESTART", 100, 250)
+    thisbread.gameOver = true;
+    requestAnimationFrame(animate);
+  } 
+  
   if (!thisbread.gameOver) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    //draw green line
-    ctx.beginPath();
-    ctx.moveTo(0, 150);
-    ctx.lineTo(800, 150);
-    ctx.lineWidth = 6;
-    ctx.strokeStyle = 'chartreuse';
-    ctx.stroke();
+    // //draw green line
+    // ctx.beginPath();
+    // ctx.moveTo(0, 150);
+    // ctx.lineTo(800, 150);
+    // ctx.lineWidth = 6;
+    // ctx.strokeStyle = 'chartreuse';
+    // ctx.stroke();
 
     //draw sandwich
     thisbread.draw(contacted);
@@ -247,17 +255,8 @@ function animate() {
     gameFrame++;
 
     requestAnimationFrame(animate);
-  } else {
-    ctx.fillStyle = "red";
-    ctx.fillText("YOU LOSE SPACE TO RESTART", 100, 250)
-    // requestAnimationFrame(animate);
-
-  }
-
-  // if (duplicates) {
-  //   thisbread.gameOver = true;
-  //   // requestAnimationFrame(animate);
-  // }
+  } 
+  
 
 }
 animate();
