@@ -42,9 +42,10 @@ class Bread {
                     this.ctx.drawImage(currIngredient, 0, 0, 1000, 1000, stackx, stacky, 250, 250);
                     stacky = stacky - 20;
 
-                }
+                } 
                 if (stacky < 200) this.gameOver = true;
             }
+
         }
     }
 }
@@ -52,6 +53,7 @@ class Bread {
 const isNotMayo = (ingredient) => {
     return !!ingredient.ingredient;
 }
+
 
 
 

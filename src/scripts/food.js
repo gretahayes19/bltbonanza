@@ -5,14 +5,17 @@ const TOMATO = new Image();
 TOMATO.src = './dist/images/tomato.png'
 const LETTUCE = new Image();
 LETTUCE.src = './dist/images/lettuce.png'
-
 const BACON = new Image();
 BACON.src = './dist/images/bacon.png'
 const MAYO = new Image();
 MAYO.src = './dist/images/mayo.png'
+const FISH = new Image();
+FISH.src = './dist/images/fish.png'
+const SOCK = new Image();
+SOCK.src = './dist/images/sock.png'
 
 
-const INGREDIENTS = [TOMATO, MAYO, LETTUCE, BACON, TOMATO, MAYO, LETTUCE, BACON, BREAD, BREAD, BREAD]
+const INGREDIENTS = [FISH, FISH, SOCK, SOCK, TOMATO, MAYO, LETTUCE, BACON, TOMATO, MAYO, LETTUCE, BACON, BREAD, BREAD, BREAD]
 
 class Food {
     constructor(canvas, ctx) {
@@ -33,7 +36,7 @@ class Food {
 
     draw() {
         // debugger
-        if (this.ingredient.currentSrc.includes("bread")) {
+        if (isBread(this)) {
             this.ctx.drawImage(this.ingredient, 0, 0, 1000, 1000, this.x, this.y, 300, 300);
         } else {
             this.ctx.drawImage(this.ingredient, 0, 0, 1000, 1000, this.x, this.y, 250, 250);
