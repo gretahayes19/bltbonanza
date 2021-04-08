@@ -189,7 +189,7 @@ let thisbread = new Bread(canvas, ctx);
 
 //animation 
 function animate() {
-  if (ick >= 2) {
+  if (ick >= 2 || duplicates) {
     thisbread.gameOver = true;
     requestAnimationFrame(animate);
   }
@@ -250,7 +250,7 @@ function animate() {
   } else {
     ctx.fillStyle = "red";
     ctx.fillText("YOU LOSE SPACE TO RESTART", 100, 250)
-    requestAnimationFrame(animate);
+    // requestAnimationFrame(animate);
 
   }
 
@@ -269,4 +269,5 @@ function restart() {
   blts = 0;
   ick = 0;
   gameOver = false;
+  duplicates = false;
 }
