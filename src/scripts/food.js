@@ -15,7 +15,7 @@ const SOCK = new Image();
 SOCK.src = './dist/images/sock.png'
 
 
-const INGREDIENTS = [FISH, FISH, SOCK, SOCK, TOMATO, MAYO, LETTUCE, BACON, TOMATO, MAYO, LETTUCE, BACON, BREAD, BREAD, BREAD]
+const INGREDIENTS = [FISH, FISH, SOCK, SOCK,TOMATO, MAYO, LETTUCE, BACON, BREAD]
 
 class Food {
     constructor(canvas, ctx) {

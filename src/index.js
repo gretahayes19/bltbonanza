@@ -38,8 +38,13 @@ document.addEventListener('keyup', function (e) {
     case 39:
       keys.rightPressed = false;
       break;
+    case 32:
+      restart();
+      break;
   }
 });
+
+
 
 
 // canvas.addEventListener('mouseup', function (event) {
@@ -53,8 +58,6 @@ document.addEventListener('keyup', function (e) {
 
 
 function breaded() {
-  // isSando = true;
-  // animate.pause();
   contacted = [];
   foodArr = [];
   let lastbread = thisbread;
@@ -62,11 +65,11 @@ function breaded() {
 }
 
 
-function grossed() {
-  contacted.pop();
-  let lastbread = thisbread;
-  thisbread = new Bread(canvas, ctx, lastbread.x);
-}
+// function grossed() {
+//   contacted.pop();
+//   let lastbread = thisbread;
+//   thisbread = new Bread(canvas, ctx, lastbread.x);
+// }
 
 function endGame () {
   ctx.fillStyle = "red";
@@ -85,13 +88,34 @@ function countGross(contacted) {
   ick = count;
 }
 
+function isBLT(contacted) {
+    let mayo = 0;
+    let tomato = 0;
+    let lettuce = 0;
+    let bacon = 0; 
+    for (let i = 0; i < contacted.length; i++) {
+      let curr = contacted[i];
+      if (!curr.ingredient) {
+        mayo++
+      } else if (curr.ingredient.currentSrc.includes("tomato")) {
+        tomato++
+      } else if (curr.ingredient.currentSrc.includes("lettuce")) {
+        lettuce++
+      } else if (curr.ingredient.currentSrc.includes("bacon")) {
+        bacon++
+      } 
+    }
+
+    return ((mayo > 0) && (tomato > 0) && (lettuce > 0) && (bacon > 0))
+}
+
 const isGross = (ingredient) => {
   return ingredient.ingredient?.currentSrc.includes("sock") || ingredient.ingredient?.currentSrc.includes("fish");
 }
 
 
 function handleFood(canvas) {
-  if (gameFrame % 50 == 0) {
+  if (gameFrame % 35 == 0) {
     let newFood = new Food(canvas, ctx);
     foodArr.push(newFood);
   }
@@ -104,13 +128,14 @@ function handleFood(canvas) {
         if (foodArr[i].ingredient.currentSrc.includes("mayo")) {
           contacted.push(MAYOFLAT)
           foodArr[i].counted = true;
-          foodArr.shift(foodArr[i])
+          foodArr.splice(i, i);
         } else {
           foodArr[i].counted = true;
           contacted.push(foodArr[i]);
         }
 
         thisbread.y -= 20;
+        console.log(thisbread.y);
 
       }
       break;
@@ -132,44 +157,56 @@ canvas.width = 800;
 canvas.height = 500;
 let thisbread = new Bread(canvas, ctx);
 
+
 //animation 
 function animate() {
-  if (ick >= 3) {
+  if (ick >= 2) {
     thisbread.gameOver = true;
+    // requestAnimationFrame(animate);
+
   }
   if (!thisbread.gameOver) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    //draw green line
+    ctx.beginPath();
+    ctx.moveTo(0, 150);
+    ctx.lineTo(800, 150);
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = 'chartreuse';
+    ctx.stroke();
+
+    //draw sandwich
     thisbread.draw(contacted);
     thisbread.update();
     countGross(contacted);
     handleFood(canvas);
+
+    //write text
     ctx.font = "30px Bungee Shade";
-    // ctx.fillStyle = "white";
-    // ctx.fillText("score: " + score, 10, 30)
     ctx.fillStyle = "white";
     ctx.fillText("BLT Count: " + blts, 10, 30)
     ctx.fillStyle = "white";
     ctx.fillText("Ick: " + ick, 10, 65)
-    // if (thisbread.gross) {
-    //   ctx.fillStyle = "chartreuse";
-    //   ctx.font = "50px Bungee Shade"
-    //   ctx.fillText("Ick", 300, 250)
-    //   grossed();
-    //   ick += 1;
-    //   setTimeout(() => {
-    //     requestAnimationFrame(animate)
-    //   }, 2000)
-    //   return;
-    // }
+
+    //sandwich complete
     if (thisbread.completed) {
       ctx.fillStyle = "chartreuse";
       ctx.font = "50px Bungee Shade"
-      ctx.fillText("That's a BLT!", 300, 250)
-      breaded();
-      blts += 1;
-      setTimeout(() => {
-        requestAnimationFrame(animate)
-      }, 2000)
+      if (isBLT(contacted)) {
+        ctx.fillText("That's a BLT!", 100, 250)
+        breaded();
+        blts += 1;
+        setTimeout(() => {
+          requestAnimationFrame(animate)
+        }, 2000)
+      } else {
+        ctx.fillText("That's NOT a BLT!", 100, 250)
+        breaded();
+        setTimeout(() => {
+          requestAnimationFrame(animate)
+        }, 2000)
+      }
       return;
     }
     gameFrame++;
@@ -177,10 +214,21 @@ function animate() {
     requestAnimationFrame(animate);
   } else {
     ctx.fillStyle = "red";
-    ctx.fillText("YOU LOSE", 400, 250)
+    ctx.fillText("YOU LOSE SPACE TO RESTART", 100, 250)
+    requestAnimationFrame(animate);
+
   }
 
 }
 animate();
 
 
+
+function restart() {
+  contacted = [];
+  foodArr = [];
+  thisbread = new Bread(canvas, ctx);
+  blts = 0;
+  ick = 0;
+  gameOver = false;
+}

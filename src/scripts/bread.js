@@ -43,7 +43,7 @@ class Bread {
                     stacky = stacky - 20;
 
                 } 
-                if (stacky < 200) this.gameOver = true;
+                if (this.y <= 80) this.gameOver = true;
             }
 
         }
