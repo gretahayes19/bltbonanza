@@ -189,6 +189,10 @@ let thisbread = new Bread(canvas, ctx);
 
 //animation 
 function animate() {
+  if (ick >= 2) {
+    thisbread.gameOver = true;
+    requestAnimationFrame(animate);
+  }
   if (!thisbread.gameOver) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -249,10 +253,7 @@ function animate() {
     requestAnimationFrame(animate);
 
   }
-  if (ick >= 2 || duplicates) {
-    thisbread.gameOver = true;
-    requestAnimationFrame(animate);
-  }
+
   // if (duplicates) {
   //   thisbread.gameOver = true;
   //   // requestAnimationFrame(animate);
@@ -260,8 +261,6 @@ function animate() {
 
 }
 animate();
-
-
 
 function restart() {
   contacted = [];
