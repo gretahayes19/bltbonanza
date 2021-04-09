@@ -34,7 +34,31 @@ h1 {
   border: 8px solid white;
   background: url("./images/fridge2.jpg");
   background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#canvasdiv {
+  width: 800px;
+  height: 500px;
   margin: 0 15px;
+
+  position: relative;
+}
+
+button {
+  height: 100px;
+  width: 300px;
+  background-color: #AACC42;
+  border: 5px solid white;
+  color: white;
+  font-family: 'Londrina Solid', sans-serif;
+  font-size: 25px;
+  z-index: 99;
+  position: absolute;
+  top: 40%;
+  left: 35%;
 }
 
 .main{
@@ -88,4 +112,6 @@ a {
   background-color: #AACC42;
   opacity: .7;
 }
+
+
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9qc19wcm9qZWN0X3NrZWxldG9uLy4vaW5kZXguc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJO0VBQ0E7RUFDQTtBQUNKOztBQUVBO0VBQ0k7RUFDQTtFQUNBO0VBQ0E7RUFDQTtBQUNKOztBQUVBO0VBQ0k7RUFDQTtFQUNBO0FBQ0osQyIsImZpbGUiOiJtYWluLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIioge1xuICAgIG1hcmdpbjogMDtcbiAgICBwYWRkaW5nOiAwO1xuICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG59XG5cbmJvZHkge1xuICAgIHdpZHRoOiAxMDB2dztcbiAgICBoZWlnaHQ6IDEwMHZoO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cblxuI2NhbnZhcyB7XG4gICAgd2lkdGg6IDgwMHB4O1xuICAgIGhlaWdodDogNTAwcHg7XG4gICAgYm9yZGVyOiA0cHggc29saWQgYmxhY2s7XG59Il0sInNvdXJjZVJvb3QiOiIifQ==*/

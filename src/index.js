@@ -185,40 +185,32 @@ const ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = 500;
 let thisbread = new Bread(canvas, ctx);
+const canvasdiv = document.getElementById("canvasdiv");
 
 
 //animation 
 function animate() {
+  let removeButton = document.getElementById("button");
+  if (removeButton) removeButton.remove();
+
   if (ick >= 2) {
-    ctx.fillStyle = "red";
-    ctx.font = "80px Londrina Solid"
-    ctx.fillText("YUCK!", 200, 250)
-    ctx.font = "40px Londrina Solid"
-    ctx.fillText("Hit space to restart", 200, 300)
+    let button = document.createElement("button");
+    button.setAttribute("id", "button");
+    button.textContent = "YUCK! Hit space to restart"
+    canvasdiv.appendChild(button);
     thisbread.gameOver = true;
     requestAnimationFrame(animate);
   } else if (duplicates) {
-    ctx.fillStyle = "red";
-    ctx.font = "80px Londrina Solid"
-    ctx.fillText("NO DUPLICATES!", 200, 250)
-    ctx.font = "40px Londrina Solid"
-    ctx.fillText("Hit space to restart", 200, 300)
-    
-
+    let button = document.createElement("button");
+    button.setAttribute("id", "button");
+    button.textContent = "NO DUPLICATES! Hit space to restart"
+    canvasdiv.appendChild(button);
     thisbread.gameOver = true;
     requestAnimationFrame(animate);
   } 
   
   if (!thisbread.gameOver) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // //draw green line
-    // ctx.beginPath();
-    // ctx.moveTo(0, 150);
-    // ctx.lineTo(800, 150);
-    // ctx.lineWidth = 6;
-    // ctx.strokeStyle = 'chartreuse';
-    // ctx.stroke();
 
     //draw sandwich
     thisbread.draw(contacted);
@@ -237,22 +229,30 @@ function animate() {
     //sandwich complete
     if (thisbread.completed) {
       if (isBLT(contacted)) {
-        ctx.fillStyle = 'white';
-        ctx.fillRect(50, 190, 500, 100);
-        ctx.fillStyle = "chartreuse";
-        ctx.font = "80px Londrina Solid"
-        ctx.fillText("That's a BLT!", 100, 250)
+        // ctx.fillStyle = 'white';
+        // ctx.fillRect(50, 190, 500, 100);
+        // ctx.fillStyle = "chartreuse";
+        // ctx.font = "80px Londrina Solid"
+        // ctx.fillText("That's a BLT!", 100, 250)
+        let button = document.createElement("button");
+        button.setAttribute("id", "button");
+        button.textContent = "That's a BLT!"
+        canvasdiv.appendChild(button);
         breaded();
         blts += 1;
         setTimeout(() => {
           requestAnimationFrame(animate)
         }, 2000)
       } else {
-        ctx.fillStyle = 'white';
-        ctx.fillRect(50, 190, 700, 100);
-        ctx.fillStyle = "chartreuse";
-        ctx.font = "80px Londrina Solid"
-        ctx.fillText("That's NOT a BLT!", 100, 250)
+        // ctx.fillStyle = 'white';
+        // ctx.fillRect(50, 190, 700, 100);
+        // ctx.fillStyle = "chartreuse";
+        // ctx.font = "80px Londrina Solid"
+        // ctx.fillText("That's NOT a BLT!", 100, 250)
+        let button = document.createElement("button");
+        button.setAttribute("id", "button");
+        button.textContent = "That's NOT a BLT!"
+        canvasdiv.appendChild(button);
         breaded();
         setTimeout(() => {
           requestAnimationFrame(animate)
