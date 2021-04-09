@@ -5,19 +5,12 @@ import {MAYOFLAT, keys} from './scripts/util'
 
 let contacted = [];
 let foodArr = [];
-
-let score = 0;
+let score =0;
 let blts = 0;
 let ick = 0;
 let duplicates = false;
 let gameFrame = 0;
-let gameOver = false;
 
-// let isSando = false;
-
-
-// let canvasPos = canvas.getBoundingClientRect();
-// console.log(canvasPos);
 
 
 document.addEventListener('keydown', function (e) {
@@ -45,32 +38,12 @@ document.addEventListener('keyup', function (e) {
   }
 });
 
-
-
-
-// canvas.addEventListener('mouseup', function (event) {
-//     console.log(event.x-canvasPos.left, event.y-canvasPos.top)
-// });
-
-
-
-
-
-
-
 function breaded() {
   contacted = [];
   foodArr = [];
   let lastbread = thisbread;
   thisbread = new Bread(canvas, ctx, lastbread.x);
 }
-
-
-// function grossed() {
-//   contacted.pop();
-//   let lastbread = thisbread;
-//   thisbread = new Bread(canvas, ctx, lastbread.x);
-// }
 
 function endGame () {
   ctx.fillStyle = "red";
@@ -114,9 +87,6 @@ function isBLT(contacted) {
     return ((mayo > 0) && (tomato > 0) && (lettuce > 0) && (bacon > 0))
 }
 
-
-
-
 function areDuplicates(contacted) {
     let mayo = 0;
     let tomato = 0;
@@ -141,8 +111,6 @@ function areDuplicates(contacted) {
 }
 
 
-
-
 function handleFood(canvas) {
   if (gameFrame % 15 == 0) {
     let newFood = new Food(canvas, ctx);
@@ -164,7 +132,6 @@ function handleFood(canvas) {
         }
 
         thisbread.y -= 20;
-        console.log(thisbread.y);
 
       }
       break;
@@ -229,11 +196,6 @@ function animate() {
     //sandwich complete
     if (thisbread.completed) {
       if (isBLT(contacted)) {
-        // ctx.fillStyle = 'white';
-        // ctx.fillRect(50, 190, 500, 100);
-        // ctx.fillStyle = "chartreuse";
-        // ctx.font = "80px Londrina Solid"
-        // ctx.fillText("That's a BLT!", 100, 250)
         let button = document.createElement("button");
         button.setAttribute("id", "button");
         button.textContent = "That's a BLT!"
@@ -244,11 +206,6 @@ function animate() {
           requestAnimationFrame(animate)
         }, 2000)
       } else {
-        // ctx.fillStyle = 'white';
-        // ctx.fillRect(50, 190, 700, 100);
-        // ctx.fillStyle = "chartreuse";
-        // ctx.font = "80px Londrina Solid"
-        // ctx.fillText("That's NOT a BLT!", 100, 250)
         let button = document.createElement("button");
         button.setAttribute("id", "button");
         button.textContent = "That's NOT a BLT!"
