@@ -5,15 +5,16 @@ import {MAYOFLAT, keys} from './scripts/util'
 
 let contacted = [];
 let foodArr = [];
-let score =0;
+
+let score = 0;
 let blts = 0;
 let ick = 0;
 let duplicates = false;
 let gameFrame = 0;
-
-
+// let gameOver = false;
 
 document.addEventListener('keydown', function (e) {
+  e.preventDefault();
   switch (e.keyCode) {
     case 37:
       keys.leftPressed = true;
@@ -25,6 +26,8 @@ document.addEventListener('keydown', function (e) {
 });
 
 document.addEventListener('keyup', function (e) {
+  e.preventDefault();
+
   switch (e.keyCode) {
     case 37:
       keys.leftPressed = false;
@@ -132,6 +135,7 @@ function handleFood(canvas) {
         }
 
         thisbread.y -= 20;
+        console.log(thisbread.y);
 
       }
       break;
@@ -187,10 +191,10 @@ function animate() {
     handleFood(canvas);
 
     //write text
-    ctx.font = "30px Londrina Solid";
-    ctx.fillStyle = "white";
+    ctx.font = "25px Krona One";
+    ctx.fillStyle = "#3E1907";
     ctx.fillText("BLT Count: " + blts, 10, 30)
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "#3E1907";
     ctx.fillText("Ick: " + ick, 10, 65)
 
     //sandwich complete
@@ -232,6 +236,6 @@ function restart() {
   thisbread = new Bread(canvas, ctx);
   blts = 0;
   ick = 0;
-  gameOver = false;
+  // gameOver = false;
   duplicates = false;
 }

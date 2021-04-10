@@ -12,27 +12,31 @@ body {
   justify-content: center;
   align-items: center;
   margin: auto;
-  background: url("./images/blt2.png");
-  background-repeat: repeat;
-  background-size: 20%;
+  background:  url("./images/kitchen2.jpeg");
+  background-repeat: no-repeat;
+  /* background: black; */
+
+  background-size: cover; 
 
   /* overflow-x: hidden; */
 }
 
 h1 {
   margin-top: 50px;
-  margin-bottom: 50px;
-  color:teal;
+  margin-bottom: 25px;
+  color:white;
   /* background-color: black; */
   font-family: 'Bungee Shade', cursive;
-  font-size: 80px;
-  text-shadow: -2px 2px chartreuse, -4px 4px orange, -6px 6px magenta, -10px 10px 10px white;
+  font-size: 100px;
+  text-shadow: 2px 2px black;
+  /* text-shadow: -2px 2px chartreuse, -4px 4px orange, -6px 6px magenta; */
 }
 #canvas {
   width: 800px;
   height: 500px;
   border: 8px solid white;
-  background: url("./images/fridge2.jpg");
+  /* background-color: rgb(82, 77, 77); */
+  background: url("./images/overlay.png"), url("./images/fridge3.jpeg"); 
   background-size: cover;
   position: absolute;
   top: 0;
@@ -50,10 +54,10 @@ h1 {
 button {
   height: 100px;
   width: 300px;
-  background-color: #AACC42;
+  background-color: #C3986E;
   border: 5px solid white;
   color: white;
-  font-family: 'Londrina Solid', sans-serif;
+font-family: 'Patrick Hand SC', cursive;
   font-size: 25px;
   z-index: 99;
   position: absolute;
@@ -71,11 +75,17 @@ button {
 .right {
   height: 500px;
   width: 300px;
-  background-color: #AACC42;
+  /* background: url('./images/blt2.png'); */
+  
+  background-color: #C3986E;
   border: 8px solid white;
   color: white;
   padding: 10px;
-  font-family: 'Londrina Solid', sans-serif;
+font-family: 'Patrick Hand SC', cursive;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .right ul {
@@ -98,18 +108,18 @@ button {
 }
 
 .links{
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
 
 a {
-  color: black;
+  color: #3E1907;
   text-decoration: none;
-  padding: 20px;
-  font-size: 70px;
-  background-color: #AACC42;
+  padding: 15px;
+  font-size: 35px;
+  /* background-color: blue; */
   opacity: .7;
 }
 
