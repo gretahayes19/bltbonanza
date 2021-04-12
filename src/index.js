@@ -135,7 +135,6 @@ function handleFood(canvas) {
         }
 
         thisbread.y -= 20;
-        console.log(thisbread.y);
 
       }
       break;
