@@ -1,6 +1,6 @@
 # BLT Bonanza
 
-BLT Bonanza is the perfect game to play when it's getting close to lunch time.  Move your plate around on the bottom of the screen to load up your slice of bread with as many yummy ingredients as you can fit -- but don't get too greedy.  If you stack your stack too high without finishing it off with another slice of bread, you'll lose your lunch!
+BLT Bonanza is the perfect game to play when it's getting close to lunch time.  Move your slice of bread around on the bottom of the screen to load up with falling ingredients, but watch out - some items are gross and will ruin your lunch!  
 
 # Wireframe
 <img width="1137" alt="Screen Shot 2021-04-04 at 12 34 45 PM" src="https://user-images.githubusercontent.com/65029597/113515407-4ac90400-9542-11eb-9858-a4ac7483f632.png">
